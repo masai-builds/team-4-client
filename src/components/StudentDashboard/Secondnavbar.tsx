@@ -1,5 +1,5 @@
-import React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React from "react";
+import { useNavigate, Link } from "react-router-dom";
 import {
   Box,
   Flex,
@@ -8,19 +8,19 @@ import {
   Button,
   Spacer,
   useMediaQuery,
-} from '@chakra-ui/react';
-import { referAndEarnLink, sprintplanlink } from '../../assets/assets';
+} from "@chakra-ui/react";
+import { referAndEarnLink, sprintplanlink } from "../../assets/assets";
 
 // this component is navbar below component in dash board page
 const SecondNavbar = () => {
   const navigate = useNavigate();
-  const [isLargerThan900] = useMediaQuery('(min-width: 900px)');
+  const [isLargerThan900] = useMediaQuery("(min-width: 900px)");
 
   return (
     <Box bg="white" p={2}>
       <Flex
-        h={isLargerThan900 ? '50px' : 'auto'}
-        direction={isLargerThan900 ? 'row' : 'column'}
+        h={isLargerThan900 ? "50px" : "auto"}
+        direction={isLargerThan900 ? "row" : "column"}
         alignItems="center"
         justifyContent="space-between"
         borderRadius="5px"
@@ -36,8 +36,8 @@ const SecondNavbar = () => {
             bg="rgb(51, 61, 76)"
             h="35px"
             color="white"
-            _hover={{ bg: 'rgb(41, 51, 66)' }}
-            onClick={() => navigate('/bookmarks')}
+            _hover={{ bg: "rgb(41, 51, 66)" }}
+            onClick={() => navigate("/bookmarks")}
           >
             Bookmarks
           </Button>
@@ -45,7 +45,7 @@ const SecondNavbar = () => {
             bg="rgb(51, 61, 76)"
             h="35px"
             color="white"
-            _hover={{ bg: 'rgb(41, 51, 66)' }}
+            _hover={{ bg: "rgb(41, 51, 66)" }}
           >
             <Link to={sprintplanlink}>Sprint Plan</Link>
           </Button>
@@ -53,7 +53,7 @@ const SecondNavbar = () => {
             bg="rgb(51, 61, 76)"
             h="35px"
             color="white"
-            _hover={{ bg: 'rgb(41, 51, 66)' }}
+            _hover={{ bg: "rgb(41, 51, 66)" }}
           >
             <Link to={referAndEarnLink}>Refer &amp; Earn</Link>
           </Button>
