@@ -14,8 +14,8 @@ const Allroutes = () => {
     <div>
       <Routes>
         <Route path="/dashboard" element={<Dashborad />} />
-        <Route path="/forgotpassword" element={<ForgetPassword />} />
-        <Route path="/resetpassword" element={<ResetPassword />} />
+        <Route path="/forgot-password" element={<ForgetPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
         <Route path="/admin/lectures" element={<AdminLecture />} />
         <Route path="/admin/signup" element={<AdminSignup />} />
         <Route path="/admin/login" element={<Adminlogin />} />

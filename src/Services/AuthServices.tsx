@@ -101,7 +101,7 @@ export async function ResetService(data: IReset): Promise<IReset> {
   const salt = bcrypt.genSaltSync(10);
   const hashedPassword = bcrypt.hashSync(password, salt);
 
-  const response = await axios.post<IReset>("/reset-password", {
+  const response = await axios.post<IReset>("/reset-password/:token", {
     email,
     hashedPassword,
   });

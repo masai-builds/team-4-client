@@ -68,7 +68,7 @@ export const ResetAction =
     dispatch({ type: types.RESET_REQUEST });
     console.log(email, password, confirm);
     axios
-      .post("/reset-password", { email, password, confirm })
+      .post("/reset-password/:token", { email, password, confirm })
       .then((r) => {
         dispatch({ type: types.RESET_SUCCESS, payload: r.data.token });
       })
