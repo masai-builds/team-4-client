@@ -1,20 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportwebVitals';
-import { BrowserRouter } from 'react-router-dom';
-import { ChakraProvider } from '@chakra-ui/react';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportwebVitals";
+import { BrowserRouter } from "react-router-dom";
+import { ChakraProvider } from "@chakra-ui/react";
+import { Provider } from "react-redux";
+import {store} from "./redux/store"
 
 ReactDOM.render(
-  <ChakraProvider>
+  
     <BrowserRouter>
+    <ChakraProvider>
+    <Provider store={store}>
       <App />
-    </BrowserRouter>
-  </ChakraProvider>,
-  document.getElementById('root')
+      
+    </Provider>
+    </ChakraProvider>
+    </BrowserRouter>,
+    
+
+  document.getElementById("root")
 );
 
-reportWebVitals((metrics :any) => {
-  console.log(metrics)
+reportWebVitals((metrics: any) => {
+  console.log(metrics);
 });

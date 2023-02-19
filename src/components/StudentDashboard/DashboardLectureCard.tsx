@@ -6,7 +6,7 @@ const DashboardLectureCard = () => {
 
   return (
     <div>
-
+DashboardLectureCard
 
 
     </div>

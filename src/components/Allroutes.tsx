@@ -1,11 +1,13 @@
-import AdminLecture from '../Pages/Adminsidepages/AdminLecturePage/AdminLecture';
-import AdminSignup from '../Pages/Adminsidepages/AdminSignup/Adminsignup';
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Adminlogin from '../Pages/Adminsidepages/AdminLogin/Adminlogin';
-import ForgetPassword from './ForgetPassword/ForgetPassword';
-import Dashborad from './StudentDashboard/Dashborad';
-import StudentLecture from '../Pages/Studentsidepages/StudentLecturePage/StudentLecture';
+import AdminLecture from "../Pages/AdminSidePages/AdminLecturePage/index";
+import AdminSignup from "../Pages/AdminSidePages/AdminSignup/index";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Adminlogin from "../Pages/AdminSidePages/AdminLogin/index";
+import ForgetPassword from "../Pages/ForgetPassword";
+import StudentSignup from '../Pages/StudentSidePages/StudentSignup'
+import Dashborad from "./StudentDashboard/Dashborad";
+import App from "../Pages/StudentSidePages/StudentLogin";
+import ResetPassword from "../Pages/ResetPassword";
 
 const Allroutes = () => {
   return (
@@ -13,13 +15,14 @@ const Allroutes = () => {
       <Routes>
         <Route path="/dashboard" element={<Dashborad />} />
         <Route path="/forgotpassword" element={<ForgetPassword />} />
-        <Route path="/user/profile" />
-        <Route path="/transcript" />
+        <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/admin/lectures" element={<AdminLecture />} />
         <Route path="/admin/signup" element={<AdminSignup />} />
         <Route path="/admin/login" element={<Adminlogin />} />
-        <Route path="/student/lectures" element={<StudentLecture />} />
-        
+        <Route path ="/student/signup" element ={<StudentSignup/>}/>
+        <Route path ="/student/login" element ={<App/>} />
+        <Route path="/user/profile" />
+        <Route path="/transcript" />
       </Routes>
     </div>
   );
