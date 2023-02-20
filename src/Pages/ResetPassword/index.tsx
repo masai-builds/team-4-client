@@ -26,7 +26,8 @@ const validationSchema = yup.object().shape({
     .email("Invalid email address")
     .required("Email is required"),
   password: yup.string().min(8, "Password must be at least 8 characters"),
-  confirm: yup.string().min(8, "Password must be at least 8 characters"),
+  // confirm: yup.string().min(8, "Password must be at least 8 characters"),
+  confirm: yup.string().oneOf([yup.ref('password')], 'Passwords must match'),
 });
 
 const initialValues: IFormData = {
@@ -128,7 +129,7 @@ export default function ResetPassword() {
                   onChange={handleChange}
                   value={values.confirm}
                 />
-                {errors.password && (
+                {errors.confirm && (
                   <div className="error-showing-popup">{errors.confirm}</div>
                 )}
               </div>
@@ -136,7 +137,7 @@ export default function ResetPassword() {
               <Flex mt="20px" justifyContent="flex-end">
                 <HStack>
                   <button className="button" type="submit">
-                    <Text fontSize="14px"> LOG IN</Text>
+                    <Text fontSize="14px"> RESET</Text>
                   </button>
                 </HStack>
               </Flex>
