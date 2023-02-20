@@ -26,9 +26,9 @@ export interface IForgotPassword {
 }
 
 export interface IReset {
-  email: string;
+  // email: string;
   password: string;
-  confirm: string;
+  confirmPassword: string;
 }
 
 export async function LoginService(data: IAuthlogin): Promise<IAuthlogin> {
@@ -90,20 +90,35 @@ export async function ForgotPasswordService(
 ): Promise<IForgotPassword> {
   const { email } = data;
 
-  const response = await axios.post<IForgotPassword>("/forgot-password", {
-    email,
-  });
+  const response = await axios.post<IForgotPassword>(
+    "/forgot-password",
+    {
+      email,
+    },
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
   return response.data;
 }
 
 export async function ResetService(data: IReset): Promise<IReset> {
-  const { email, password } = data;
-  const salt = bcrypt.genSaltSync(10);
-  const hashedPassword = bcrypt.hashSync(password, salt);
+  // const { password, confirmPassword } = data;
+  // const salt = bcrypt.genSaltSync(10);
+  // const hashedPassword = bcrypt.hashSync(password, salt);
 
-  const response = await axios.post<IReset>("/reset-password/:token", {
-    email,
-    hashedPassword,
-  });
+  const response = await axios.post<IReset>(
+    "/reset-password",
+    data,
+
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  console.log("response", response);
   return response.data;
 }

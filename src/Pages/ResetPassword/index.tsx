@@ -1,109 +1,99 @@
-import * as yup from "yup";
-import { useFormik } from "formik";
-import React from "react";
-import "./index.css";
-import {
-  Container,
-  Flex,
-  FormLabel,
-  HStack,
-  Input,
-  Text,
-} from "@chakra-ui/react";
-import { Box, Image } from "@chakra-ui/react";
+import React from 'react'
 import { masaiimage } from "../../assets/assets";
+import { useFormik } from "formik";
+import * as yup from "yup";
 import { ResetService } from "../../Services/AuthServices";
+import {
+  Flex,
+  Box,
+  Input,
+  FormLabel,
+  Image,
+  Button,
+  HStack,
+  Text,
+  Container,
+} from "@chakra-ui/react";
+
+
 
 interface IFormData {
-  email: string;
   password: string;
-  confirm: string;
+  confirmPassword:string;
+  token: any;
 }
 
 const validationSchema = yup.object().shape({
-  email: yup
+    password: yup
     .string()
-    .email("Invalid email address")
-    .required("Email is required"),
-  password: yup.string().min(8, "Password must be at least 8 characters"),
-  // confirm: yup.string().min(8, "Password must be at least 8 characters"),
-  confirm: yup.string().oneOf([yup.ref('password')], 'Passwords must match'),
+    .min(8, "Password must be 8 characters long")
+    .matches(/[0-9]/, "Password requires a number")
+    .matches(/[A-Z]/, "Password requires a uppercase letter")
+    .matches(/[a-z]/, "Password requires a lowercase letter")
+    .matches(/[_]/, "Password requires a underScore Symbol"),
+    confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password")], "ReEntered Password must match witch previous password"),
 });
+const queryParams = new URLSearchParams(window.location.search);
+const token = queryParams.get('token');
 
 const initialValues: IFormData = {
-  email: "",
   password: "",
-  confirm: "",
+  confirmPassword:"",
+  token:token
 };
 
 const onSubmit = async (values: IFormData) => {
-  ResetService(values);
+  console.log(values)
+   ResetService(values);
 };
 
-export default function ResetPassword() {
+const ForgetPassword = () => {
   const { handleSubmit, handleChange, values, errors } = useFormik({
     initialValues,
     validationSchema,
     onSubmit,
   });
-
   return (
     <>
       <div className="container">
-        <Container mt="120px" alignItems="center" w="100%" centerContent>
+        <Container w="100%" centerContent>
           <Image
-            height="60px"
+            boxSize="120px"
+            mt="0px"
             objectFit="contain"
             src={masaiimage}
             alt="Masai logo"
           />
+
           <Box
             w={["full", "md"]}
-            p="10px 20px 20px 30px"
+            p="20px"
             mx="auto"
-            mt="30px"
             border={["none"]}
             bg="white"
             borderColor={["", "grey.300"]}
             borderRadius={10}
             boxShadow="2px 4px 6px rgba(0, 0, 0, 0.1)"
           >
+            <Text fontSize="16px" color="rgb(113, 120, 128)">
+              Reset your password
+            </Text>
             <form onSubmit={handleSubmit}>
-              <div>
+              <div >
                 <FormLabel
-                  fontSize=".875rem"
                   fontWeight="500"
-                  color="rgb(55 65 81)"
-                  mt={4}
-                >
-                  Email
-                </FormLabel>
-                <Input
-                  variant="outline"
-                  type="email"
-                  placeholder="Email"
-                  name="email"
-                  onChange={handleChange}
-                  value={values.email}
-                />
-                {errors.email && (
-                  <div className="error-showing-popup">{errors.email}</div>
-                )}
-              </div>
-              <div>
-                <FormLabel
-                  fontSize=".875rem"
-                  fontWeight="500"
-                  color="rgb(55 65 81)"
+                  color="rgb(31,41,55)"
+                  fontSize="15px"
                   mt={4}
                 >
                   Password
                 </FormLabel>
                 <Input
-                  variant="outline"
-                  type="password"
-                  placeholder="Password"
                   name="password"
+                  variant="outline"
+                  placeholder="New Password"
                   onChange={handleChange}
                   value={values.password}
                 />
@@ -111,34 +101,50 @@ export default function ResetPassword() {
                   <div className="error-showing-popup">{errors.password}</div>
                 )}
               </div>
-
-              <div>
+              <div >
                 <FormLabel
-                  fontSize=".875rem"
                   fontWeight="500"
-                  color="rgb(55 65 81)"
+                  color="rgb(31,41,55)"
+                  fontSize="15px"
                   mt={4}
                 >
                   Confirm Password
                 </FormLabel>
                 <Input
+                  name="confirmPassword"
                   variant="outline"
-                  type="password"
                   placeholder="Confirm Password"
-                  name="confirm"
                   onChange={handleChange}
-                  value={values.confirm}
+                  value={values.confirmPassword}
                 />
-                {errors.confirm && (
-                  <div className="error-showing-popup">{errors.confirm}</div>
+                {errors.confirmPassword && (
+                  <div className="error-showing-popup">{errors.confirmPassword}</div>
                 )}
               </div>
+              {/* <Input type="hidden" name="token" value={values.token} /> */}
+              <Input
+                  name="token"
+                  variant="outline"
+                  placeholder=""
+                   onChange={handleChange}
+                  value={values.token}
+                   type="hidden"
+                />
 
-              <Flex mt="20px" justifyContent="flex-end">
+              <Flex justifyContent="flex-end">
                 <HStack>
-                  <button className="button" type="submit">
-                    <Text fontSize="14px"> RESET</Text>
-                  </button>
+                  <Button
+                    bg="black"
+                    h="40px"
+                    mt="20px"
+                    w="auto"
+                    color="white"
+                    rounded="10px"
+                    _hover={{bg:"black"}}
+                    type="submit"
+                  >
+                     Password Reset 
+                  </Button>
                 </HStack>
               </Flex>
             </form>
@@ -147,4 +153,6 @@ export default function ResetPassword() {
       </div>
     </>
   );
-}
+};
+
+export default ForgetPassword;

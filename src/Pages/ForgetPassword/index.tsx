@@ -1,18 +1,14 @@
-import React, { useState, Dispatch } from "react";
+import React from "react";
 import { masaiimage } from "../../assets/assets";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { ForgotPasswordService } from "../../Services/AuthServices";
-
-import { useDispatch } from "react-redux";
 import {
   Flex,
   Box,
   Input,
-  FormControl,
   FormLabel,
   Image,
-  Checkbox,
   Button,
   HStack,
   Text,
@@ -24,18 +20,19 @@ interface IFormData {
 }
 
 const validationSchema = yup.object().shape({
-  username: yup
+  email: yup
     .string()
     .email("Invalid email address")
     .required("email is required"),
 });
 
 const initialValues: IFormData = {
-  email: "",
+  email: ""
 };
 
 const onSubmit = async (values: IFormData) => {
-  ForgotPasswordService(values);
+  console.log(values)
+   ForgotPasswordService(values);
 };
 
 const ForgetPassword = () => {
@@ -72,7 +69,7 @@ const ForgetPassword = () => {
               chooose new one.
             </Text>
             <form onSubmit={handleSubmit}>
-              <FormControl>
+              <div >
                 <FormLabel
                   fontWeight="500"
                   color="rgb(31,41,55)"
@@ -82,15 +79,16 @@ const ForgetPassword = () => {
                   Email
                 </FormLabel>
                 <Input
+                  name="email"
                   variant="outline"
                   placeholder="Enter your email address"
                   onChange={handleChange}
-                  value={values.username}
+                  value={values.email}
                 />
-                {errors.username && (
-                  <div className="error-showing-popup">{errors.username}</div>
+                {errors.email && (
+                  <div className="error-showing-popup">{errors.email}</div>
                 )}
-              </FormControl>
+              </div>
 
               <Flex justifyContent="flex-end">
                 <HStack>
@@ -101,6 +99,8 @@ const ForgetPassword = () => {
                     w="auto"
                     color="white"
                     rounded="10px"
+                    _hover={{bg:"black"}}
+                    type="submit"
                   >
                     Email Password Reset Link
                   </Button>
