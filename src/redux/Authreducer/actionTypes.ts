@@ -7,6 +7,6 @@ export const SIGNUP_ERROR = "SIGNUP_ERROR";
 
 export const FORGOT_EMAIL_REQUEST = "FORGOT_EMAIL_REQUEST";
 
-export const RESET_REQUEST = "LOGIN_REUESTQ";
-export const RESET_SUCCESS = "LOGIN_SUCCESS";
-export const RESET_ERROR = "LOGIN_ERROR";
+export const RESET_REQUEST = "RESET_REUESTQ";
+export const RESET_SUCCESS = "RESET_SUCCESS";
+export const RESET_ERROR = "RESET_ERROR";

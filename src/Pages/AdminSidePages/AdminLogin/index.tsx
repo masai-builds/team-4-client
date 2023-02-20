@@ -148,7 +148,7 @@ export default function AdminLogin() {
                     fontSize={".850rem"}
                     textDecoration="underline"
                     color="rgb(75 85 99)"
-                    onClick={() => navigate("/forgotpassword")}
+                    onClick={() => navigate("/forgot-password")}
                   >
                     Forget your password?
                   </Button>
