@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import "./AdminNavbar.css";
+
+import "./index.css";
+
 import { Link, NavLink } from "react-router-dom";
 import {
   Divider,

@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {
   Box,
-  Text,
   Flex,
   Heading,
   ButtonGroup,
@@ -10,10 +9,10 @@ import {
   Spacer,
   useMediaQuery,
 } from "@chakra-ui/react";
-import "../../../App.css";
+import { referAndEarnLink, sprintplanlink } from "../../../assets/assets";
 
-// this component is  lecture page navbar down below component
-const Secondnav = () => {
+// this component is navbar below component in dash board page
+const SecondNavbar = () => {
   const navigate = useNavigate();
   const [isLargerThan900] = useMediaQuery("(min-width: 900px)");
 
@@ -29,11 +28,10 @@ const Secondnav = () => {
         mx="auto"
       >
         <Box mb={isLargerThan900 ? 0 : 2}>
-
-          <Heading size="md" >Lectures</Heading>
+          <Heading size="md">Todays Schedule</Heading>
         </Box>
 
-        <ButtonGroup spacing={2} >
+        <ButtonGroup spacing={2}>
           <Button
             bg="rgb(51, 61, 76)"
             h="35px"
@@ -41,8 +39,7 @@ const Secondnav = () => {
             _hover={{ bg: "rgb(41, 51, 66)" }}
             onClick={() => navigate("/bookmarks")}
           >
-            {" "}
-            Create Lectures
+            Bookmarks
           </Button>
           <Button
             bg="rgb(51, 61, 76)"
@@ -50,8 +47,15 @@ const Secondnav = () => {
             color="white"
             _hover={{ bg: "rgb(41, 51, 66)" }}
           >
-            {" "}
-            Create Bulk Lectures
+            <Link to={sprintplanlink}>Sprint Plan</Link>
+          </Button>
+          <Button
+            bg="rgb(51, 61, 76)"
+            h="35px"
+            color="white"
+            _hover={{ bg: "rgb(41, 51, 66)" }}
+          >
+            <Link to={referAndEarnLink}>Refer &amp; Earn</Link>
           </Button>
         </ButtonGroup>
       </Flex>
@@ -59,4 +63,4 @@ const Secondnav = () => {
   );
 };
 
-export default Secondnav;
+export default SecondNavbar;

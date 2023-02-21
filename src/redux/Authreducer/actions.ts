@@ -5,7 +5,11 @@ import axios from "axios";
 export interface ILoginFormState {
   email: string;
   password: string;
+
   rememberMe: boolean;
+
+  rememberMe:boolean
+
 }
 export interface IAuthDetailSignup {
   name: string;
@@ -13,6 +17,7 @@ export interface IAuthDetailSignup {
   password: string;
   reEnteredPassword: string;
 }
+
 
 export interface IForgotPassword {
   email: string;
@@ -29,6 +34,13 @@ export const AdminLoginAction =
   (dispatch: Dispatch) => {
     dispatch({ type: types.LOGIN_REQUEST });
     console.log(email, password, rememberMe);
+
+export const AdminLoginAction =
+  ({ email,password ,rememberMe}: ILoginFormState) =>
+  (dispatch: Dispatch) => {
+    dispatch({ type: types.LOGIN_REQUEST });
+  console.log(email,password,rememberMe)
+
     axios
       .post("admin/login", { email, password })
       .then((r) => {
@@ -54,6 +66,7 @@ export const AdminsignupAction =
       });
   };
 
+
 export const ForgotpasswordAction =
   ({ email }: IForgotPassword) =>
   (dispatch: Dispatch) => {
@@ -76,3 +89,4 @@ export const ResetAction =
         dispatch({ type: types.RESET_ERROR, payload: e });
       });
   };
+

@@ -1,6 +1,7 @@
 
 
 body{
+
     background-color: rgb(243,244,246);
   
   }
@@ -37,3 +38,47 @@ body{
   .button:hover{
     background-color: black;
   }
+  background-color: rgb(243,244,246);
+
+}
+.container{
+  height: auto;
+  
+}
+
+
+.email-error-showing-popup{
+  width: auto;
+  height: auto;
+ background-color: white;
+
+ color: red;
+ margin-top: 6px;
+ padding-top: 5px;
+ padding-bottom: 5px;
+justify-content: center;
+ align-items: center;
+ display: flex;
+
+}
+.button{
+  background-color: rgb(31 41 55);
+  margin-right: 10px;
+  height:35px;
+  width:90px;
+  color:white;
+     border-radius: 10px;
+}
+
+.button:hover{
+  background-color: rgb(55 65 81);
+}
+.errorlist{
+  color: red;
+  padding-top: 10px;
+}
+
+.errorlist li{
+  margin-left: 50px;
+}
+>>>>>>> main

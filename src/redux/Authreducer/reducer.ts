@@ -37,6 +37,7 @@ export const reducer = (state = initialState, { type, payload }: any) => {
         isError: true,
         isAuth: false,
       };
+
       case types.FORGOT_EMAIL_REQUEST:
         return {
           ...state
@@ -58,6 +59,8 @@ export const reducer = (state = initialState, { type, payload }: any) => {
             isLoading: false,
             isError: true
           };
+
+
     default:
       return state;
   }
